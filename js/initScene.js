@@ -25,7 +25,7 @@ function initScene() {
   engine = new BABYLON.Engine(canvas, true);
 
   // Create scene.
-  scene = BABYLON.Scene(engine);
+  scene = new BABYLON.Scene(engine);
 
   // Create the camera.
   camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0,4,-10), scene);

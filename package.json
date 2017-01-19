@@ -1,0 +1,22 @@
+{
+  "name": "toad_attack",
+  "version": "1.0.0",
+  "description": "Rock Band-style game in Babylon.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eugenesia/babylonjs-toad-attack.git"
+  },
+  "author": "Eugene Sia <eugene@eugenesia.co.uk>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eugenesia/babylonjs-toad-attack/issues"
+  },
+  "homepage": "https://github.com/eugenesia/babylonjs-toad-attack#readme",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  }
+}

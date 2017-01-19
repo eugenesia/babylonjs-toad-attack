@@ -197,3 +197,52 @@ function cleanShrooms() {
   }
 }
 
+
+/**
+ * Create a complex animation for when the shroom reaches the ending band.
+ * ending: A mesh representing the end of a lane.
+ */
+function animateEnding (ending) {
+  // Get initial position of mesh.
+  var posY = ending.position.y;
+  // Create Animation object to store the complex animation.
+  var animateEnding = new BABYLON.Animation(
+    // Name.
+    "animateEnding",
+    // Attribute the animation will change.
+    "position.y",
+    // Frames Per Second.
+    60,
+    // Type of attribute the animation will change.
+    BABYLON.Animation.ANIMATIONTYPE_FLOAT,
+    // Behaviour of the animation - take a prev value and increment it.
+    BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE);
+
+  // Animation keyframes.
+  var keys = [];
+  keys.push({
+    frame: 0,
+    // Start from ground level.
+    value: posY,
+  },
+  {
+    frame: 5,
+    // Jump up.
+    value: posY + 0.5,
+  },
+  {
+    frame: 10,
+    // Come back down.
+    value: posY,
+  });
+
+  // Add keyframes to the animation.
+  animateEnding.setKeys(keys);
+
+  // Link animation to the mesh.
+  ending.animations.push(animateEnding);
+
+  // Run the animation.
+  scene.beginAnimation(ending, 0, 10, false, 1);
+}
+

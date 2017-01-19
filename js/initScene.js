@@ -5,6 +5,10 @@ var TOAD_MODEL;
 // An array to store each ending of the lane.
 var ENDINGS = [];
 
+// Store all enemies.
+var ENEMIES = [];
+
+
 /**
  * Load the scene when canvas fully loaded.
  */
@@ -39,6 +43,17 @@ function initScene() {
   // Render the scene continuously.
   engine.runRenderLoop(function() {
     scene.render();
+
+    // Move all shrooms forward each frame.
+    ENEMIES.forEach(function (shroom) {
+      if (shroom.killed) {
+        // Nothing to do here.
+      }
+      else {
+        // Move shroom forward.
+        shroom.position.z -= 0.5;
+      }
+    });
   });
 }
 
@@ -102,7 +117,7 @@ function initGame() {
   );
 
   
-  var ENEMIES = [];
+  ENEMIES = [];
 
   // Create a shroom in a random lane.
   var createEnemy = function () {

@@ -74,6 +74,9 @@ function initScene() {
         shroom.position.z -= 0.5;
       }
     });
+
+    // Destroy shrooms behind camera.
+    cleanShrooms();
   });
 }
 
@@ -174,8 +177,23 @@ function initGame() {
 
   // Create a clone every 1 second.
   setInterval(createEnemy, 1000);
-
-
 }
 
+
+/**
+ * Delete shrooms to save processing and memory if they are behind camera.
+ */
+function cleanShrooms() {
+  // For all clones.
+  for (var n = 0; n < ENEMIES.length; n++) {
+    // Shroom is behind camera which is at origin.
+    if (ENEMIES[n].position.z < -10) {
+      var shroom = ENEMIES[n];
+      // Destroy the clone.
+      shroom.dispose();
+      ENEMIES.splice(n, 1);
+      n--;
+    }
+  }
+}
 

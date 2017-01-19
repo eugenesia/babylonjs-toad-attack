@@ -68,6 +68,14 @@ function initGame() {
   var LANE_INTERVAL = 5;
   var LANES_POSITIONS = [];
 
+  // Create ground material using texture image.
+  var ground = new BABYLON.StandardMaterial("ground", scene);
+  var texture = new BABYLON.Texture("assets/ground.jpg", scene);
+  // Scale the texture to fit the scaled entity.
+  texture.uScale = 40;
+  texture.vScale = 2;
+  ground.diffuseTexture = texture;
+
   // Function to create lanes.
   var createLane = function (id, position) {
     var lane = BABYLON.Mesh.CreateBox("lane" + id, 1, scene);
@@ -76,6 +84,9 @@ function initGame() {
     lane.scaling.z = 800;
     lane.position.x = position;
     lane.position.z = lane.scaling.z/2 - 100;
+
+    // Set lane material to be ground.
+    lane.material = ground;
   };
 
   // A plane denoting the near end of the lane.
@@ -143,6 +154,8 @@ function initGame() {
 
   // Create a clone every 1 second.
   setInterval(createEnemy, 1000);
+
+
 }
 
 

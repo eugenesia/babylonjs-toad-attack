@@ -101,6 +101,33 @@ function initGame() {
     }
   );
 
+  
+  var ENEMIES = [];
+
+  // Create a shroom in a random lane.
+  var createEnemy = function () {
+    // Starting position of toads.
+    var posZ = 100;
+
+    // Get a random lane.
+    var posX = LANES_POSITIONS[Math.floor(Math.random() * LANE_NUMBER)];
+
+    // Create a clone of our template toad.
+    var shroom = TOAD_MODEL.clone(TOAD_MODEL.name);
+
+    // ID will be "red_toad 1", "red_toad 2", etc.
+    shroom.id = TOAD_MODEL.name + (ENEMIES.length + 1);
+    // Toad not killed yet.
+    shroom.killed = false;
+    // Make it visible.
+    shroom.isVisible = true;
+    // Update position
+    shroom.position = new BABYLON.Vector3(posX, shroom.position.y/2, posZ);
+    ENEMIES.push(shroom);
+  };
+
+  // Create a clone every 1 second.
+  setInterval(createEnemy, 1000);
 }
 
 

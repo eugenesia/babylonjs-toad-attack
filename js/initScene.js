@@ -88,6 +88,19 @@ function initGame() {
 
   // Adjust camera position to the middle lane.
   camera.position.x = LANES_POSITIONS[Math.floor(LANE_NUMBER/2)];
+
+  // The function ImportMesh will import our custom model in the scene given in
+  // parameter.
+  BABYLON.SceneLoader.ImportMesh("red_toad", "assets/", "toad.babylon",
+    scene, function (meshes) { 
+      // Loaded only 1 mesh - the "red_toad" mesh from file. Use it.
+      var m = meshes[0];
+      m.isVisible = false;
+      m.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
+      TOAD_MODEL = m;
+    }
+  );
+
 }
 
 

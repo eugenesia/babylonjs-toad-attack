@@ -40,6 +40,26 @@ function initScene() {
   // Create light.
   var light = new BABYLON.PointLight("light", new BABYLON.Vector3(0,5,-5), scene);
 
+
+  // Create a mesh box for the Skybox.
+  var skybox = BABYLON.Mesh.CreateBox("skyBox", 100.0, scene);
+
+  // Create sky.
+  var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+  skyboxMaterial.backFaceCulling = false;
+  skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+  skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+  // The skybox is a set of 6 textures having the same name (skybox here) with
+  // different extensions (_nx, _ny, _nz, _px, _py, _pz) in a folder
+  // (assets/cubemap).
+  skyboxMaterial.reflectionTexture =
+    new BABYLON.CubeTexture("assets/cubemap/cubemap", scene);
+  skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+
+  // box + sky = skybox
+  skybox.material = skyboxMaterial;
+
+
   // Render the scene continuously.
   engine.runRenderLoop(function() {
     scene.render();

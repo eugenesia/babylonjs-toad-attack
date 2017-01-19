@@ -11,6 +11,7 @@ var ENDINGS = [];
 document.addEventListener("DOMContentLoaded", function() {
   if (BABYLON.Engine.isSupported()) {
     initScene();
+    initGame();
   }
 }, false);
 
@@ -40,4 +41,13 @@ function initScene() {
     scene.render();
   });
 }
+
+
+/**
+ * Initialize the game.
+ */
+function initGame() {
+  BABYLON.Mesh.CreateSphere("sphere", 10, 1, scene);
+}
+
 

@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
   if (BABYLON.Engine.isSupported()) {
     initScene();
     initGame();
+
+    // Detect keypresses.
+    window.addEventListener("keydown", onKeyDown);
   }
 }, false);
 
@@ -244,5 +247,30 @@ function animateEnding (ending) {
 
   // Run the animation.
   scene.beginAnimation(ending, 0, 10, false, 1);
+}
+
+
+/**
+ * Detect keypress and handle shroom killing.
+ */
+function onKeyDown(evt) {
+  var currentEnding = -1;
+  switch (evt.keyCode) {
+    case 81: // 'Q'
+      currentEnding = 0; // Left lane.
+      break;
+    case 87: // 'W'
+      currentEnding = 1; // Middle lane.
+      break;
+    case 69: // 'E'
+      currentEnding = 2; // Right lane.
+      break;
+  }
+  if (currentEnding != -1) {
+    // Animate the ending.
+    animateEnding(ENDINGS[currentEnding]);
+
+    // getToadOnEnding...
+  }
 }
 

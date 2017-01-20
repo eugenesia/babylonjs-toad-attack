@@ -198,6 +198,7 @@ function cleanShrooms() {
       n--;
       // Increment score as player killed a shroom.
       score += 1;
+      console.log('Score is: ' + score);
     }
     // Shroom is behind camera which is at origin.
     else if (ENEMIES[n].position.z < -10) {
@@ -208,6 +209,7 @@ function cleanShrooms() {
       n--;
       // Decrement score if player let a shroom pass behind camera.
       score -= 1;
+      console.log('Score is: ' + score);
     }
   }
 }

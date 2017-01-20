@@ -270,7 +270,35 @@ function onKeyDown(evt) {
     // Animate the ending.
     animateEnding(ENDINGS[currentEnding]);
 
-    // getToadOnEnding...
+    // Get any shroom that's on the ending when keypress detected.
+    var shroom = getToadOnEnding(ENDINGS[currentEnding]);
+    if (shroom) {
+      // Shroom is killed by player.
+      shroom.killed = true;
+    }
   }
+}
+
+
+/**
+ * Check if a shroom is present on a given ending.
+ * Returns the shroom found.
+ */
+function getToadOnEnding (ending) {
+  // For each shroom.
+  for (var i = 0; i < ENEMIES.length; i++) {
+    var shroom = ENEMIES[i];
+    // Check if shroom is on selected lane.
+    if (shroom.position.x === ending.position.x) {
+      // Check if shroom is ON the ending.
+      var diffSup = ending.position.z + 3;
+      var diffInf = ending.position.z - 3;
+
+      if (shroom.position.z > diffInf && shroom.position.z < diffSup) {
+        return shroom;
+      }
+    }
+  }
+  return null;
 }
 

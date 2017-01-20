@@ -189,13 +189,25 @@ function initGame() {
 function cleanShrooms() {
   // For all clones.
   for (var n = 0; n < ENEMIES.length; n++) {
-    // Shroom is behind camera which is at origin.
-    if (ENEMIES[n].position.z < -10) {
+    // Shroom has been killed.
+    if (ENEMIES[n].killed) {
       var shroom = ENEMIES[n];
       // Destroy the clone.
       shroom.dispose();
       ENEMIES.splice(n, 1);
       n--;
+      // Increment score as player killed a shroom.
+      score += 1;
+    }
+    // Shroom is behind camera which is at origin.
+    else if (ENEMIES[n].position.z < -10) {
+      var shroom = ENEMIES[n];
+      // Destroy the clone.
+      shroom.dispose();
+      ENEMIES.splice(n, 1);
+      n--;
+      // Decrement score if player let a shroom pass behind camera.
+      score -= 1;
     }
   }
 }
